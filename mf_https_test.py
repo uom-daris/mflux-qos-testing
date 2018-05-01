@@ -22,7 +22,7 @@ config.readfp(io.BytesIO(ini_config))
 
 # Get setup information from ini file
 location = config.get('qostest','location')
-pingFile = config.get('qostest','pingFile')
+pingFile = config.get('qostest','testFile')
 prefix = config.get('qostest','prefix')
 namespace = "/projects/proj-demonstration-1128.4.15/ping_test"
 
