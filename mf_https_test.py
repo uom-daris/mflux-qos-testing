@@ -3,7 +3,7 @@
 
 import mfclient
 import mf_connect
-import socket
+import send_to_carbon
 import os
 import timeit
 try:
@@ -11,11 +11,8 @@ try:
 except:
     import configparser as cfp
 import io
-import pickle
-import pickletools
 import time
 import logging
-import struct
 
 # Load configuration file
 with open("qos_test.ini") as f:
@@ -28,19 +25,6 @@ location = config.get('qostest','location')
 pingFile = config.get('qostest','pingFile')
 prefix = config.get('qostest','prefix')
 namespace = "/projects/proj-demonstration-1128.4.15/ping_test"
-# Set Carbon server details
-CARBON_SERVER = config.get('pingtest','CARBON_SERVER')
-CARBON_PICKLE_PORT = config.get('pingtest','CARBON_PICKLE_PORT')
-
-
-def sendtocarbon(carb_tuples):
-    # Create package and send it to Carbon
-    package = pickle.dumps(carb_tuples, protocol=2)
-    carb_size = struct.pack('!L', len(package))
-    sock.sendall(carb_size)
-    sock.sendall(package)
-    pickletools.dis(package)
-    return
 
 
 # Create mediaflux connection
@@ -48,18 +32,6 @@ try:
     cxn = mf_connect.connect()
 except Exception as e:
     logging.critical("Cannot connect to Mediaflux. Exception thrown: " + str(e))
-    raise
-
-# Connect to Carbon server
-sock = socket.socket()
-try:
-    sock.connect((CARBON_SERVER, CARBON_PICKLE_PORT))
-except socket.error:
-    logging.critical("Cannot connect to Carbon. Exception thrown: " + str(e))
-    raise SystemExit("Couldn't connect to %(server)s on port %(port)d, is carbon-cache.py running?" %
-                     {'server': CARBON_SERVER, 'port':CARBON_PICKLE_PORT})
-except Exception as e:
-    logging.critical("Cannot connect to Carbon. Unexpected exception thrown: " + str(e))
     raise
 
 # Run metric tests, will do a server.ping, asset.create and a asset.get
@@ -96,7 +68,7 @@ try:
     tuples.append((unicode(graphPrefix + 'ping.read.'+readunits), (now, unicode(readtime))))
 
     # Send to carbon server
-    sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
     ###
     # asset.create
@@ -138,7 +110,7 @@ try:
     tuples.append((unicode(graphPrefix + 'create.store.name'), (now, unicode(storeName))))
 
     # Send to carbon server
-    sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
 
     ###
@@ -178,7 +150,7 @@ try:
     tuples.append((unicode(graphPrefix + 'get.store.name'), (now, unicode(dlStoreName))))
 
     # Send to carbon server
-    sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
 
     # Remove created asset
