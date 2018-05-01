@@ -22,7 +22,7 @@ config.readfp(io.BytesIO(ini_config))
 
 # Get setup information from ini file
 location = config.get('qostest','location')
-pingFile = config.get('qostest','testFile')
+testFile = config.get('qostest', 'testFile')
 prefix = config.get('qostest','prefix')
 namespace = "/projects/proj-demonstration-1128.4.15/ping_test"
 
@@ -46,7 +46,7 @@ try:
     # Server.ping
     ###
     # Execute server ping test
-    pingResults = cxn.execute("server.ping", inputs=[mfclient.MFInput(pingFile)])
+    pingResults = cxn.execute("server.ping", inputs=[mfclient.MFInput(testFile)])
 
     # Parse XML test results
     size = pingResults.element("size")
@@ -84,7 +84,7 @@ try:
 
     def createtest():
         global create
-        create = cxn.execute("service.execute",cAsset.doc_text(),inputs=[mfclient.MFInput(pingFile)])
+        create = cxn.execute("service.execute", cAsset.doc_text(), inputs=[mfclient.MFInput(testFile)])
 
     pythoncreatetime = timeit.timeit(createtest,number=1)
 
