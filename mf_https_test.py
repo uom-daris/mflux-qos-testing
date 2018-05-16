@@ -21,10 +21,9 @@ config = cfp.RawConfigParser(allow_no_value=True)
 config.readfp(io.BytesIO(ini_config))
 
 # Get setup information from ini file
-location = config.get('qostest','location')
 testFile = config.get('qostest', 'testFile')
 prefix = config.get('qostest','prefix')
-namespace = "/projects/proj-demonstration-1128.4.15/ping_test"
+namespace = config.get('qostest','namespace')
 
 
 # Create mediaflux connection
@@ -38,9 +37,10 @@ except Exception as e:
 try:
     # Get the server UUID to identify the MF server
     serverUUID = cxn.execute("server.uuid")
-    suuid = serverUUID.element("uudi")
+    suuid = serverUUID.element("uuid")
+    print serverUUID
     # Set the graphite prefix namespace
-    graphPrefix = prefix+suuid+"."
+    graphPrefix = prefix+str(suuid)+"."
 
     ###
     # Server.ping
@@ -67,6 +67,7 @@ try:
     tuples.append((unicode(graphPrefix + 'ping.speed.bs'), (now, unicode(rate[0].value()))))
     tuples.append((unicode(graphPrefix + 'ping.read.'+readunits), (now, unicode(readtime))))
 
+    # print tuples
     # Send to carbon server
     send_to_carbon.sendtocarbon(tuples)
 
@@ -109,6 +110,7 @@ try:
     tuples.append((unicode(graphPrefix + 'create.pythontime.sec'), (now, unicode(pythoncreatetime))))
     tuples.append((unicode(graphPrefix + 'create.store.name'), (now, unicode(storeName))))
 
+    # print tuples
     # Send to carbon server
     send_to_carbon.sendtocarbon(tuples)
 
@@ -149,6 +151,7 @@ try:
     tuples.append((unicode(graphPrefix + 'get.pythontime.sec'), (now, unicode(pythondltime))))
     tuples.append((unicode(graphPrefix + 'get.store.name'), (now, unicode(dlStoreName))))
 
+    # print tuples
     # Send to carbon server
     send_to_carbon.sendtocarbon(tuples)
 
