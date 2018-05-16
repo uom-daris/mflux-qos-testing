@@ -17,8 +17,8 @@ def sendtocarbon(carb_tuples):
     config.readfp(io.BytesIO(ini_config))
 
     # Set Carbon server details
-    CARBON_SERVER = config.get('pingtest', 'CARBON_SERVER')
-    CARBON_PICKLE_PORT = config.get('pingtest', 'CARBON_PICKLE_PORT')
+    CARBON_SERVER = config.get('qostest', 'CARBON_SERVER')
+    CARBON_PICKLE_PORT = config.get('qostest', 'CARBON_PICKLE_PORT')
 
     # Connect to Carbon server
     sock = socket.socket()
