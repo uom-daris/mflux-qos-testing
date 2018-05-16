@@ -3,6 +3,7 @@ import pickletools
 import struct
 import socket
 import logging
+import io
 try:
     import ConfigParser as cfp
 except:
