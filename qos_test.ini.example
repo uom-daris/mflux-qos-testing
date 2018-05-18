@@ -1,8 +1,19 @@
-[pingtest]
+[qostest]
 # Prefix for the graphite database
 prefix=resplat.mediaflux.
+uuid=1128
 # What local file should be used in testing
-pingFile=/Users/jwinton/Desktop/Brampton.jpg
+testFile=/Users/jwinton/Desktop/Test/testfiles/Brampton.jpg
+# Namespace in Mediaflux for testing
+namespace = /projects/proj-qos_test-1128.4.58
+# Mediaflux mount
+mf_mount=//mediaflux.vicnode.org.au/proj-qos_test-1128.4.58
+# Local mount path for Mediaflux SMB mount
+smb_mount=/Users/jwinton/Desktop
+# SFTP port
+sftp_port = 9003
+# SFTP path
+sftp_path=/Volumes/proj-qos_test-1128.4.58
 # Set Carbon server details
 CARBON_SERVER = '115.146.94.123'
 CARBON_PICKLE_PORT = 2004
