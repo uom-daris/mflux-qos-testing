@@ -23,11 +23,11 @@ def sendtocarbon(carb_tuples):
     # Connect to Carbon server
     sock = socket.socket()
     try:
-        sock.connect((CARBON_SERVER, CARBON_PICKLE_PORT))
+        sock.connect((CARBON_SERVER, int(CARBON_PICKLE_PORT)))
     except socket.error:
-        logging.critical("Cannot connect to Carbon. Exception thrown: " + str(e))
+        logging.critical("Cannot connect to Carbon. Exception thrown: ")
         raise SystemExit("Couldn't connect to %(server)s on port %(port)d, is carbon-cache.py running?" %
-                         {'server': CARBON_SERVER, 'port': CARBON_PICKLE_PORT})
+                         {'server': CARBON_SERVER, 'port': int(CARBON_PICKLE_PORT)})
     except Exception as e:
         logging.critical("Cannot connect to Carbon. Unexpected exception thrown: " + str(e))
         raise
