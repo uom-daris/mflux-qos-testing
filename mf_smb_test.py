@@ -29,7 +29,6 @@ smbpath = config.get('qostest','smb_mount')
 graphPrefix = prefix+"."+uuid+"."
 
 testfilesize = os.path.getsize(testFile)
-print testfilesize
 
 try:
     def copyto():
