@@ -37,5 +37,5 @@ def sendtocarbon(carb_tuples):
     carb_size = struct.pack('!L', len(package))
     sock.sendall(carb_size)
     sock.sendall(package)
-    pickletools.dis(package)
+    # pickletools.dis(package)
     return
