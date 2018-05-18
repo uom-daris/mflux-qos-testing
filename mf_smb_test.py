@@ -47,7 +47,7 @@ try:
 
     print tuples
     # Send to carbon server
-    # send_to_carbon.sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
     fname = testFile.split("/")
     def copyfrom():
@@ -66,7 +66,7 @@ try:
 
     print tuples
     # Send to carbon server
-    # send_to_carbon.sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
 finally:
     print "Bye"
