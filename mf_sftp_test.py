@@ -66,7 +66,7 @@ try:
 
     print tuples
     # Send to carbon server
-    # send_to_carbon.sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
 
 
@@ -89,7 +89,7 @@ try:
 
     print tuples
     # Send to carbon server
-    # send_to_carbon.sendtocarbon(tuples)
+    send_to_carbon.sendtocarbon(tuples)
 
 finally:
     if sftp:
