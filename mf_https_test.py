@@ -42,7 +42,7 @@ try:
     # print serverUUID
     # print suuid
     # Set the graphite prefix namespace
-    graphPrefix = prefix+str(suuid)+"."+locality+"."
+    graphPrefix = prefix+str(suuid)+"qos"+"."+locality+"."
 
     ###
     # Server.ping
