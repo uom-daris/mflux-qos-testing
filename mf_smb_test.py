@@ -25,8 +25,9 @@ prefix = config.get('qostest','prefix')
 uuid = config.get('qostest','uuid')
 namespace = config.get('qostest','namespace')
 smbpath = config.get('qostest','smb_mount')
+locality = config.get('qostest','probe_id')
 
-graphPrefix = prefix+"."+uuid+"."
+graphPrefix = prefix+"."+uuid+"."+locality+"."
 
 testfilesize = os.path.getsize(testFile)
 
@@ -68,4 +69,8 @@ try:
     send_to_carbon.sendtocarbon(tuples)
 
 finally:
-    print "Bye"
+    try:
+        myfile = smbpath+"/"+fname[-1]
+        os.remove(myfile)
+    except OSError, e: ## if failed report ##
+        logging.warning("Failed to delete copied file. Exception thrown: " + str(e.filename,e.sterror))
