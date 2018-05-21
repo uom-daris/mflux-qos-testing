@@ -29,7 +29,7 @@ sftpPort = config.get('qostest','sftp_port')
 sftpPath = config.get('qostest','sftp_path')
 locality = config.get('qostest','probe_id')
 
-graphPrefix = prefix+"."+uuid+"."+locality+"."
+graphPrefix = prefix+"."+uuid+".qos."+locality+"."
 
 cnopts = pysftp.CnOpts();
 cnopts.hostkeys = None
