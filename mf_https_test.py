@@ -24,6 +24,7 @@ config.readfp(io.BytesIO(ini_config))
 testFile = config.get('qostest', 'testFile')
 prefix = config.get('qostest','prefix')
 namespace = config.get('qostest','namespace')
+locality = config.get('qostest','probe_id')
 
 
 # Create mediaflux connection
@@ -37,10 +38,11 @@ except Exception as e:
 try:
     # Get the server UUID to identify the MF server
     serverUUID = cxn.execute("server.uuid")
-    suuid = serverUUID.element("uuid")
-    print serverUUID
+    suuid = serverUUID.value("uuid")
+    # print serverUUID
+    # print suuid
     # Set the graphite prefix namespace
-    graphPrefix = prefix+str(suuid)+"."
+    graphPrefix = prefix+str(suuid)+"."+locality+"."
 
     ###
     # Server.ping
