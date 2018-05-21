@@ -2,6 +2,7 @@
 # Prefix for the graphite database
 prefix=resplat.mediaflux.
 uuid=1128
+probe_id=tester
 # What local file should be used in testing
 testFile=/Users/jwinton/Desktop/Test/testfiles/Brampton.jpg
 # Namespace in Mediaflux for testing
