@@ -27,7 +27,7 @@ namespace = config.get('qostest','namespace')
 smbpath = config.get('qostest','smb_mount')
 locality = config.get('qostest','probe_id')
 
-graphPrefix = prefix+"."+uuid+"."+locality+"."
+graphPrefix = prefix+"."+uuid+".qos."+locality+"."
 
 testfilesize = os.path.getsize(testFile)
 
