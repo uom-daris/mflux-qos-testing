@@ -27,8 +27,9 @@ uuid = config.get('qostest','uuid')
 namespace = config.get('qostest','namespace')
 sftpPort = config.get('qostest','sftp_port')
 sftpPath = config.get('qostest','sftp_path')
+locality = config.get('qostest','probe_id')
 
-graphPrefix = prefix+"."+uuid+"."
+graphPrefix = prefix+"."+uuid+"."+locality+"."
 
 cnopts = pysftp.CnOpts();
 cnopts.hostkeys = None
@@ -93,5 +94,7 @@ try:
 
 finally:
     if sftp:
+        if sftp.isfile(remotepath=sftpPath+"/"+fname[-1]):
+            sftp.remove(remotefile=sftpPath+"/"+fname[-1])
         sftp.close()
 
