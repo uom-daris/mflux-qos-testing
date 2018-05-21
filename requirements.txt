@@ -1,16 +1,8 @@
-# Python library requirements
-import os
-import timeit
-try:
-    import ConfigParser as cfp
-except:
-    import configparser as cfp
-import io
-import time
-import logging
-import pysftp
-import shutil
-import pickle
-import pickletools
-import struct
-import socket
+#
+####### requirements.txt #######
+#
+###### Requirements without Version Specifiers ######
+pysftp
+#
+###### Requirements with Version Specifiers ######
+#
