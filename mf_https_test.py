@@ -42,7 +42,8 @@ try:
     # print serverUUID
     # print suuid
     # Set the graphite prefix namespace
-    graphPrefix = prefix+str(suuid)+"qos"+"."+locality+"."
+    graphPrefix = prefix+str(suuid)+".qos"+"."+locality+".https."
+    # print graphPrefix
 
     ###
     # Server.ping
