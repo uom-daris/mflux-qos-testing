@@ -61,9 +61,9 @@ try:
     # Build tuple for (sftp put)
     now = int(time.time())
     tuples = ([])
-    tuples.append((unicode(graphPrefix + 'sftp.put.size.bytes'), (now, unicode(testfilesize))))
-    tuples.append((unicode(graphPrefix + 'sftp.put.time.sec'), (now, unicode(puttime))))
-    tuples.append((unicode(graphPrefix + 'sftp.put.speed.bs'), (now, unicode(putrate))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.put.size.bytes'), (now, unicode(testfilesize))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.put.time.sec'), (now, unicode(puttime))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.put.speed.bs'), (now, unicode(putrate))))
 
     print tuples
     # Send to carbon server
@@ -84,9 +84,9 @@ try:
     # Build tuple for (sftp get)
     now = int(time.time())
     tuples = ([])
-    tuples.append((unicode(graphPrefix + 'sftp.get.size.bytes'), (now, unicode(testfilesize))))
-    tuples.append((unicode(graphPrefix + 'sftp.get.time.sec'), (now, unicode(gettime))))
-    tuples.append((unicode(graphPrefix + 'sftp.get.speed.bs'), (now, unicode(getrate))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.get.size.bytes'), (now, unicode(testfilesize))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.get.time.sec'), (now, unicode(gettime))))
+    tuples.append((unicode(graphPrefix + 'sftp.1.get.speed.bs'), (now, unicode(getrate))))
 
     print tuples
     # Send to carbon server
